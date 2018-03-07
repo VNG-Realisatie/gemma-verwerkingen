@@ -1,4 +1,5 @@
 # Wat heeft een developer nodig om een standaard te kunnen implementeren?
+_Issue: Als developer wil ik een koppelvlakspecificatie verwerkingenregister in Github_
 * Architectuur
 * Koppelvlak semantisch informatiemodel: betekenis en structuur van gegevens
 * Open API Specificatie (voor json) of xsd (voor xml)
@@ -11,6 +12,7 @@
 * In vorm waarmee bijdrageproces te doen is (code/mark down/tekst; niet MS word, Enterprise Architect, pdf, enz)
 
 # Hoe wil je kunnen bijdragen aan een standaard?
+_Issue: Als gemeentelijk medewerker wil ik alle producten kunnen co-creeren_
 * Via pull requests
 * Op welke deelproducten?
   * Architectuur 
@@ -27,6 +29,7 @@
   * Bij bekijken pull request zijn de verschillen te zien, ondersteund door github: tekstbestanden
 
 # Wat moet koppelvlakbeheerder controleren om bijdrage te beoordelen?
+bij _Issue: Als developer wil ik een koppelvlakspecificatie verwerkingenregister in Github_
 * Consistentie tussen deelproducten, dus verwerking over hele stack (bijv. wijziging in bericht ook verwerkt in referentie implementatie)
 * Reden/uitleg over wijziging
 * Reacties met overeenstemming uit community: afstemmen pull request met andere leveranciers en gemeenten
