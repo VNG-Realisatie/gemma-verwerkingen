@@ -54,11 +54,20 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'verwerkingsregister.urls'
 
+# List of callables that know how to import templates from various sources.
+RAW_TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    # 'admin_tools.template_loaders.Loader',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(DJANGO_PROJECT_DIR, 'templates'),
+        ],
+        'APP_DIRS': False,  # conflicts with explicity specifying the loaders
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -66,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': RAW_TEMPLATE_LOADERS
         },
     },
 ]
@@ -95,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nl-nl'
 
 TIME_ZONE = 'UTC'
 

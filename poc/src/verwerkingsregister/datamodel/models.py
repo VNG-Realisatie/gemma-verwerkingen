@@ -8,15 +8,27 @@ class Organisatie(models.Model):
     naam = models.CharField(max_length=255)
     adres = models.TextField(blank=True)
 
+    class Meta:
+        verbose_name = _('organisatie')
+        verbose_name_plural = _('organisaties')
+
 
 class Doel(models.Model):
     naam = models.CharField(max_length=255)
     omschrijving = models.TextField(blank=True)
 
+    class Meta:
+        verbose_name = _('doel')
+        verbose_name_plural = _('doelen')
+
 
 class Grondslag(models.Model):
     identificatie = models.CharField(max_length=12)
     omschrijving = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name = _('grondslag')
+        verbose_name_plural = _('grondslagen')
 
 
 class Proces(models.Model):
@@ -25,6 +37,10 @@ class Proces(models.Model):
     verwerkings_verantwoordelijke = models.CharField(max_length=100)
 
     organisatie = models.ForeignKey(Organisatie, related_name='voert_uit', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('proces')
+        verbose_name_plural = _('processen')
 
 
 class ProcesStap(models.Model):
@@ -36,11 +52,19 @@ class ProcesStap(models.Model):
     realiseert = models.ForeignKey(Doel, on_delete=models.CASCADE)
     gebaseerd_op = models.ManyToManyField(Grondslag)
 
+    class Meta:
+        verbose_name = _('proces stap')
+        verbose_name_plural = _('proces stappen')
+
 
 class DataObject(models.Model):
     naam = models.CharField(max_length=255)
 
     organisatie = models.ForeignKey(Organisatie, related_name='is_bronhouder_van', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('data object')
+        verbose_name_plural = _('data objecten')
 
 
 class DataElement(models.Model):
@@ -49,10 +73,18 @@ class DataElement(models.Model):
     process_stap = models.ForeignKey(ProcesStap, related_name='mag_bewerken', on_delete=models.CASCADE)
     data_object = models.ForeignKey(DataObject, related_name='omvat', on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = _('data element')
+        verbose_name_plural = _('data elementen')
+
 
 class Applicatie(models.Model):
     identificatie = models.CharField(max_length=12)
     naam = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = _('applicatie')
+        verbose_name_plural = _('applicaties')
 
 
 class Rol(models.Model):
@@ -66,10 +98,18 @@ class Rol(models.Model):
         if self.wordt_vervuld_door_applicatie and self.wordt_vervuld_door_applicatie:
             raise ValidationError(_('Een rol moet vervuld worden door een applicatie, organisatie, of beide.'))
 
+    class Meta:
+        verbose_name = _('rol')
+        verbose_name_plural = _('rollen')
+
 
 class Medewerker(models.Model):
     identificatie = models.CharField(max_length=12)
     naam = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = _('medewerker')
+        verbose_name_plural = _('medewerkers')
 
 
 class MedewerkerRol(models.Model):
@@ -78,3 +118,7 @@ class MedewerkerRol(models.Model):
     gedefinieerd_door = models.ForeignKey(Applicatie, on_delete=models.CASCADE)
     wordt_vervuld_door = models.ForeignKey(Medewerker, on_delete=models.CASCADE)
     is_geautoriseerd_voor = models.ForeignKey(DataObject, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('medewerker rol')
+        verbose_name_plural = _('medewerker rollen')
