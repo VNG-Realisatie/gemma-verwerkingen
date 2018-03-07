@@ -69,8 +69,15 @@ class ProcesStap(models.Model):
         return self.naam
 
 
+class PrivacyClassificatie(DjangoChoices):
+    open_data = ChoiceItem(label=_('Open data'))
+    valt_onder_avg = ChoiceItem(label=_('Valt onder AVG'))
+    overig = ChoiceItem(label=_('Overig'))
+
+
 class DataObject(models.Model):
     naam = models.CharField(max_length=255)
+    privacy_classificatie = models.CharField(max_length=100, choices=PrivacyClassificatie.choices, default=PrivacyClassificatie.overig)
 
     bronhouder = models.ForeignKey(Organisatie, verbose_name=_('bronhouder (organisatie)'), related_name='is_bronhouder_van', on_delete=models.CASCADE)
 
@@ -123,16 +130,20 @@ class Rol(models.Model):
     wordt_vervuld_door_applicatie = models.ForeignKey(Applicatie, verbose_name=_('wordt vervuld door (applicatie)'), blank=True, null=True, on_delete=models.CASCADE)
     heeft_betrekking_op = models.ForeignKey(ProcesStap, verbose_name=_('heeft betreking op (proces stap)'), on_delete=models.CASCADE)
 
-    def clean(self):
-        if self.wordt_vervuld_door_applicatie and self.wordt_vervuld_door_applicatie:
-            raise ValidationError(_('Een rol moet vervuld worden door een applicatie, organisatie, of beide.'))
-
     class Meta:
         verbose_name = _('rol')
         verbose_name_plural = _('rollen')
 
     def __str__(self):
         return self.naam
+
+    def clean(self):
+        if self.wordt_vervuld_door_applicatie and self.wordt_vervuld_door_applicatie:
+            raise ValidationError(_('Een rol moet vervuld worden door een applicatie, organisatie, of beide.'))
+
+    @property
+    def wordt_vervuld_door(self):
+        return self.wordt_vervuld_door_applicatie or self.wordt_vervuld_door_organisatie
 
 
 class Medewerker(models.Model):
@@ -158,4 +169,15 @@ class MedewerkerRol(models.Model):
         verbose_name_plural = _('medewerker rollen')
 
     def __str__(self):
+        return self.naam
+
+
+class Rule(ProcesStap):
+    class Meta:
+        proxy = True
+        verbose_name = _('Regel')
+        verbose_name_plural = _('Regels')
+
+    @property
+    def proces_stap(self):
         return self.naam

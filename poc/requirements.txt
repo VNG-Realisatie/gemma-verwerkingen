@@ -1,1 +1,2 @@
 Django==2.0.3
+django-choices==1.6.0
