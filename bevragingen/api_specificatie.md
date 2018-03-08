@@ -10,7 +10,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
  Aenean commodo ligula eget dolor.
  
  ###Ondersteunt userstories
- * [https://github.com/VNG-Realisatie/gemma-zaken/issues/1 ] (Als KCC medewerker wil ik een overzicht van zaken van een persoon kunnen opvragen)
+ * [Als KCC medewerker wil ik een overzicht van zaken van een persoon kunnen opvragen](https://github.com/VNG-Realisatie/gemma-zaken/issues/1) 
  
  ##Service 2
  ###Beschrijving Functionaliteit
