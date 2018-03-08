@@ -138,8 +138,8 @@ class Rol(models.Model):
         return self.naam
 
     def clean(self):
-        if self.wordt_vervuld_door_applicatie and self.wordt_vervuld_door_applicatie:
-            raise ValidationError(_('Een rol moet vervuld worden door een applicatie, organisatie, of beide.'))
+        if self.wordt_vervuld_door_applicatie and self.wordt_vervuld_door_organisatie:
+            raise ValidationError(_('Een rol moet vervuld worden door een applicatie of organisatie.'))
 
     @property
     def wordt_vervuld_door(self):

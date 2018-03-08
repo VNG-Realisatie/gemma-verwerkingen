@@ -10,3 +10,7 @@ Verwerkingsregister
 Proof of concept of a "verwerkingsregister", developed during the Common
 Grounds fieldlab.
 
+
+Getting started
+===============
+
