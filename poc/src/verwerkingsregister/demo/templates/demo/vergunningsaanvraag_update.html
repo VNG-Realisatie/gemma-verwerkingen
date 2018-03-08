@@ -1,0 +1,89 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Aanvraag behandelen</h1>
+    <p class="lead">Aanvraag goedkeuren of afkeuren.</p>
+  </div>
+
+  <div class="container">
+
+    <div class="alert alert-warning" role="alert">
+      Bij het in behandeling nemen van deze zaak, zijn gegevens opgevraagd van het Kadaster. Dit is een proces stap die gedefinieerd is in het verwerkingsregister.
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="col-6 col-md">
+
+            <div class="form-group">
+              <label>Aanvrager</label>
+              <p>{{ object.aanvrager.achternaam }}, {{ object.aanvrager.voornaam }}</p>
+            </div>
+
+            <div class="form-group">
+              <label>Zaak</label>
+              <p>{{ object.get_zaaktype_display }} ({{ object.get_zaakstatus_display }})</p>
+              {% if object.zaakstatus != ZaakStatus.nieuw %}
+                <small class="text-muted">Deze zaak is reeds in behandeling of voltooid. In deze demo kunt u de zaak gewoon nogmaals goedkeuren of afkeuren :)</small>
+              {% endif %}
+            </div>
+
+            <div class="form-group">
+              <label>Onderwerp</label>
+              <p>{{ object.onderwerp }}</p>
+            </div>
+
+            <div class="form-group">
+              <label>Toelichting</label>
+              <p>{{ object.toelichting }}</p>
+            </div>
+
+            <fieldset class="sensitive">
+
+              <div class="form-group">
+                <label>Perceelnummer</label>
+                <p>{{ kadaster_data.perceelnummer }}, sectie {{ kadaster_data.sectie }}</p>
+              </div>
+
+              <div class="form-group">
+                <label>Kadastrale grootte</label>
+                <p>{{ kadaster_data.kadastraleGrootte }}</p>
+              </div>
+
+              <div class="form-group">
+                <label>Kadastraal gerechtigde</label>
+                <p>{{ object.aanvrager.achternaam }}, {{ object.aanvrager.voornaam }}</p>
+              </div>
+
+            </fieldset>
+          </div>
+          <div class="col-6 col-md">
+            <p>
+              <img class="img-fluid" src="https://maps.googleapis.com/maps/api/staticmap?center={{ object.get_lokatie_display }}&zoom=20&size=600x600&maptype=roadmap&markers=color:blue%7Clabel:S%7C{{ object.get_lokatie_display }}&key={{ GOOGLE_API_KEY }}"/>
+            </p>
+
+            <div class="form-group">
+              <label>Adres</label>
+              <p>{{ object.get_lokatie_display }}</p>
+            </div>
+
+            <p>
+              <a href="{{ kadaster_href }}" target="_blank">Bekijk op de website van het Kadaster</a>
+            </p>
+          </div>
+      </div>
+
+      <p>
+        <button type="submit" class="btn btn-success" name="zaakstatus" value="{{ ZaakStatus.toegewezen }}">Goedkeuren</button>
+        <button type="submit" class="btn btn-danger" name="zaakstatus" value="{{ ZaakStatus.afgewezen }}">Afkeuren</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location='{% url 'demo:preview' object.pk %}';">Ga terug</button>
+      </p>
+
+    </form>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Aanvraag gegevens</h1>
+    <p class="lead">Gegevens van de aanvraag.</p>
+  </div>
+
+  <div class="container">
+
+    <div class="alert alert-warning" role="alert">
+      Er is hier nog geen sprake van een proces stap. Er worden geen additionele gegevens opgehaald. Alleen de aanvraag gegevens worden hier zichtbaar.
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label>Aanvrager</label>
+        <p>{{ object.aanvrager.achternaam }}, {{ object.aanvrager.voornaam }}</p>
+      </div>
+
+      <div class="form-group">
+        <label>Zaak</label>
+        <p>{{ object.get_zaaktype_display }} ({{ object.get_zaakstatus_display }})</p>
+        {% if object.zaakstatus != ZaakStatus.nieuw %}
+          <small class="text-muted">Deze zaak is reeds in behandeling of voltooid. In deze demo kunt u de zaak gewoon nogmaals in behandeling nemen :)</small>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label>Onderwerp</label>
+        <p>{{ object.onderwerp }}</p>
+      </div>
+
+      <div class="form-group">
+        <label>Toelichting</label>
+        <p>{{ object.toelichting }}</p>
+      </div>
+      <p>
+        <button type="submit" class="btn btn-primary">Neem in behandeling</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location='{% url 'demo:list' %}';">Ga terug</button>
+      </p>
+    </form>
+
+  </div>
+
+{% endblock %}

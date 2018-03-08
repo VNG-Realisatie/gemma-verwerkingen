@@ -32,3 +32,13 @@ DEBUG = True
 
 # Add the hostnames or IP addresses that access this web application here.
 ALLOWED_HOSTS = []
+
+# Add a Google API key to show a map in the demo application.
+GOOGLE_API_KEY = ''
+
+# Services service via NLX:
+NLX_OUTWAY_URL = 'http://localhost:12018'
+KADASTER_SERVICE_URL = '{}/demo-organization/kadaster-brk'.format(NLX_OUTWAY_URL)
+
+# If you want to use the Kadaster directly, just use:
+# KADASTER_SERVICE_URL = 'https://brk.basisregistraties.overheid.nl'

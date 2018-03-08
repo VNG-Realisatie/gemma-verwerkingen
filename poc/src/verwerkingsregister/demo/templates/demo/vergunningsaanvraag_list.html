@@ -1,0 +1,41 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Lijst</h1>
+    <p class="lead">Overzicht van alle vergunningsaanvragen.</p>
+  </div>
+
+  <div class="container">
+
+    <div class="alert alert-warning" role="alert">
+      Er is hier nog geen sprake van een proces stap. Er wordt alleen een lijst van vergunnings weergegeven.
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Zaaktype</th>
+          <th scope="col">Zaakstatus</th>
+          <th scope="col">Aanvrager</th>
+          <th scope="col">Aanvraagdatum</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in object_list %}
+          <tr>
+            <th scope="row"><a href="{% url 'demo:preview' obj.pk %}">{{ obj.pk }}</a></th>
+            <td>{{ obj.get_zaaktype_display }}</td>
+            <td>{{ obj.get_zaakstatus_display }}</td>
+            <td>{{ obj.aanvrager }}</td>
+            <td>{{ obj.created|date }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+{% endblock %}

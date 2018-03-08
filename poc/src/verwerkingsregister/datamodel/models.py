@@ -92,7 +92,8 @@ class DataObject(models.Model):
 class DataElement(models.Model):
     naam = models.CharField(max_length=255)
 
-    process_stap = models.ManyToManyField(ProcesStap, related_name='mag_bewerken')
+    # TODO: Johan prefers this field on the ProcesStap, rather than on the DateElement side. This is too much work for now.
+    process_stap = models.ManyToManyField(ProcesStap, related_name='mag_bewerken', blank=True)
     data_object = models.ForeignKey(DataObject, related_name='omvat', on_delete=models.CASCADE)
 
     class Meta:

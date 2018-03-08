@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'verwerkingsregister.datamodel',
+    'verwerkingsregister.demo',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Add a Google API key to show a map in the demo application.
+GOOGLE_API_KEY = ''
+
+# Services service via NLX:
+NLX_OUTWAY_URL = 'http://localhost:12018'
+KADASTER_SERVICE_URL = '{}/demo-organization/kadaster-brk'.format(NLX_OUTWAY_URL)
+
+# If you want to use the Kadaster directly, just use:
+# KADASTER_SERVICE_URL = 'https://brk.basisregistraties.overheid.nl'
 
 # Override settings with local settings.
 try:
