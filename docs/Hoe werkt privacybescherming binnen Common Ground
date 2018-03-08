@@ -1,0 +1,38 @@
+# 
+Hoe wordt privacy-bescherming gerealiseerd d.m.v. Common Ground?
+
+Doel
+De functionarissen gegevensbescherming (FG's) moeten borgen dat een organisatie voldoet aan de eisen van de AVG. De opzet van de Common Ground zorgt ervoor dat deze taak in hoge mate wordt gefaciliteerd, gestructureerd en tot op zekere hoogte wordt geautomatiseerd. Ook diverse overige taken die voortkomen uit de AVG worden in hoge mate ondersteund. Denk daarbij aan het beantwoorden van verzoeken van burgers tot inzicht in opvragingen van zijn/haar persoonsgegevens.
+
+Organisatie
+Belangrijk uitgangspunt is dat organisaties elkaar vertrouwen op organisatieniveau. Elke combinatie van 2 individuele orgnisaties (hierna A en B) heeft een verwerkingsovereenkomst, waarin staat welke gegevens A van B mag opvragen, B van A mag opvragen, A aan B mag verstrekken en B aan A mag verstrekken. De overeenkomst is gedetailleerd tot attribuutniveau. Voorbeelden:
+- elke gemeente mag van elke gemeente BRP-gegevens opvragen en binnen de BRP een alle persoonskenmerken;
+- elke gemeente mag van een kadastraal object voornaam, achternaam en zakelijk recht op een perceel opvragen maar niet geboortedatum (geen idee of dit klopt)
+Hoewel er dus tussen elk tweetal organisaties een overeenkomst moet zijn, zal (bijvoorbeeld) het kadaster niet met elke gemeente andere leveringsvoorwaarden willen hebben, dus hierin zal verregaand gestandaardiseerd worden.
+Er is een verwerkingsregister bij de organisatie die gegevens opvraagt en een verwerkingsregister bij de organisate die gegevens verstrekt. Gemeenten vervullen beide rollen en veel andere organisaties ook. Een afspraak over welke bevragingen tussen organisaties mogelijk zijn wordt altijd aan beide kanten vastgelegd. Daarbij wordt ook de rol vastgelegd, namelijk vrager of verstrekker. Deze rol ligt vast op organisatieniveau.
+
+NLX
+NLX is een gateway (of poortwachter) die in het Common-Ground-project wordt gebouwd. NLX wordt als open source ter beschikking gesteld via Github.
+Elke organisatie heeft een eigen NLX-node (of meerdere - hierover wordt nog nagedacht). Deze node wordt gerealiseerd in de vorm van een lokale installatie (on premise dus) van de NLX.
+De gateway, het woord zegt het al, handelt op een veilige manier berichten af. Dit zijn berichten tussen organisaties maar ook berichten binnen de organisatie. Hij weet welke gegevens met wie uitgewisseld mogen worden en zorgt ervoor dat deze afspraak wordt gehandhaafd. Maar hij kijkt niet of op basis van de juiste grondslag of met het juiste doel gegevens worden opgevraagd.
+De gemeente moet er zelf voor zorgen dat ze niet onrechtmatig gegevens opvraagt. De gemeente die gegevens opvraagt bij een andere organisatie geeft dus niet doel en grondsag van deze bevraging door.
+
+Verwerkingsregister binnen NLX
+Binnen NLX is een verwerkingsregister gebouwd. (De term validatieregister wordt ook gebruikt.) Hierin wordt vastgelegd welke bevraging mag worden uitgevoerd op basis van welke grondslag en binnen welke processtap. Zie de beschrijving voor het informatiemodel van het verwerkingsregister binnen Common Ground. NLX is dus tegelijk de gateway en de tool waarmee de gemeente het verwerkingsregister beheert.
+NB het informatiemodel is op dit moment nog niet uitgekristalliseerd. Nu lijkt het erop dat er binnen een proces meerdere processtappen (kunnen) zijn (1 op n dus) en binnen een processtap weer meerdere verwerkingsactiviteiten. Een verwerkingsactiviteit is een specifieke bevraging op een specifieke gegevensverzameling. Dit gaat verder dan de huidige wettelijke eisen voor het artikel-30-register. Daarvoor is slechts vereist dat je per proces vastlegt welke categorieën persoonsgegevens en welke bijzondere persoonsgegevens je verwerkt op basis van welke grondslag. De detaillering die Common Ground / NLX aanbrengt is echter wel degelijk noodzakelijk voor een goed privacymanagement binnen de gemeente en ook nodig om diverse taken op het gebied van verantwoordlng te kunnen automatiseren.
+
+Logfile binnen NLX
+Naast het verwerkingsregister, omvat NLX ook een logfile. Deze heeft ook een [informatiemodel]. Informatiemodel is misschien en groot woord. NLX legt per bevraging een aantal kenmerken vast. Per gelogde bevraging is er een verwijzing naar een regel in het verwerkingsregister.
+
+Logfiles per applicatie
+Niet binnen NLX, maar wel noodzakelijk voor de hele opzet, moet elke aangesloten applicatie die persoonsgegevens verwerkt ook een logfile (auditrail) bijhouden. Dit is dus een eis die gemeenten aan leveranciers moeten stellen, maar dat is niets nieuws en komt ook niet voort uit Common Ground.
+Vanuit Common Ground gaan we voorschrijven hoe zo'n log eruit moet zien. Hiervoor is een apart document [logging requirements voor applicaties]. Deze voorschriften zijn nodig om geautomatiseerde auditing mogelijk te maken.
+
+Audits
+Met de beschreven opzet wordt dus elke bevraging gelogd in 2 verwerkingsregisters (bij vrager en leverancier) en in 2 applicatielogfiles. Met deze gecombineerde registers/logfiles kan automatisch auditing worden toegepast, m.a.w. de gemeente kan laten zien of alle verwerkingen rechtmatig zijn geweest.
+In de AVG heeft de burger ook een rol als auditor. Hij kan opvragen welke bevragingen er over hem zijn uitgevoerd. Dit recht heeft hij nu al en dit kan, met de huidige stand van informatievoorziening bij gemeenten, heel veel handwerk kosten. Dankzij de opzet vanuit Common Ground kan dat automatisch en vrijwel real time, of, iets minder ambitieus, binnen een dag op verzoek.
+
+Aandachtspunten
+1. Afgezien van privacygevoelige gegevens, zijn er gegevens die op andere gronden gevoelig zijn en bescherming behoeven, namelijk: openbare orde / financieel / auteursrechtelijk / overige zware belangen van de gemeente. (Hier is nog geen definitieve classificatie voor.) Het omgaan met deze overige gevoelige gegevens kan helemaal of bijna helemaal volgens hetzelfde stramien.
+2. Het zou voor de implementatie een enorm voordeel zijn als gemeentelijke processen worden gestandaard vanuit het perspectief van gegevensbeveiliging. Dat maakt het mogelijk voor alle gemeenten ineens processtappen te koppelen aan grondslagen en verwerkingsactiviteiten. Kanttekening: lokale varianten moeten mogelijk blijven, al was het maar omdat elke gemeente via de APV eigen grondslagen kan creëren.
+3. Bij binnengemeentelijke uitwisseling van privacygevoelige gegevens via nlx moeten gebruikers en procesgegevens in de header van de berichten worden meegegeven.
