@@ -31,6 +31,14 @@ class Client(object):
             # Could be taken from settings.
             'X-NLX-Request-Application-Id': 'DEMO-APP',
             'X-NLX-Request-User-Id': 'DEMO-MDW',
+            # Typically specified as ?fields= but Kadaster does not support this (although its in the DSO guidelines).
+            'X-NLX-Request-Data-Elements': ', '.join([
+                'KadastraalObjectIdentificatie',
+                'Perceelgrootte',
+                'Burgerservicenummer',
+            ]),
+            # Typically required for the private Kadaster service request, but not actually used here.
+            'X-NLX-Subject-Identifier': 'Burgerservicenummer=342641736'
         }
 
         response = requests.get(url, headers=headers)

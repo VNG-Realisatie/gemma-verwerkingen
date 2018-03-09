@@ -24,6 +24,13 @@
               <p>{{ object.aanvrager.achternaam }}, {{ object.aanvrager.voornaam }}</p>
             </div>
 
+            <fieldset class="sensitive">
+              <div class="form-group">
+                <label>Burgerservicenummer</label>
+               <p>342641736</p>
+             </div>
+            </fieldset>
+
             <div class="form-group">
               <label>Zaak</label>
               <p>{{ object.get_zaaktype_display }} ({{ object.get_zaakstatus_display }})</p>
@@ -45,19 +52,24 @@
             <fieldset class="sensitive">
 
               <div class="form-group">
-                <label>Perceelnummer</label>
+                <label>Kadastraal Object Identificatie</label>
                 <p>{{ kadaster_data.perceelnummer }}, sectie {{ kadaster_data.sectie }}</p>
               </div>
 
               <div class="form-group">
-                <label>Kadastrale grootte</label>
+                <label>Perceelgrootte</label>
                 <p>{{ kadaster_data.kadastraleGrootte }}</p>
               </div>
 
               <div class="form-group">
-                <label>Kadastraal gerechtigde</label>
+                <label>Zakelijk gerechtigde</label>
                 <p>{{ object.aanvrager.achternaam }}, {{ object.aanvrager.voornaam }}</p>
               </div>
+
+              <div class="form-group">
+                <label>Burgerservicenummer</label>
+               <p>342641736  <i>(komt overeen met aanvrager)</i></p>
+             </div>
 
             </fieldset>
           </div>
