@@ -1,4 +1,5 @@
 # gemma-verwerkingen
+De standaard 'gemma-verwerkingen' wordt toegepast binnen NLX om te zorgen dat berichtuitwisseling veilig en verantwoord plaatsvindt. Je vind hier een aanzet tot beschrijving van de standaard. De standaard is nog in opbouw dus zullen er de komende maanden regelmatig aanpassingen plaats vinden. De informatie die er nu staat is onder voorbehoud.
 
 ## Inleiding tot NLX
 NLX is een open-source interorganisatorisch systeem dat gefedereerde authenticatie, veilige verbinding en protocolling mogelijk maakt in een grootschalig, dynamisch API-landschap. De noodzaak voor het creëren van NLX komt voort uit de Common Ground visie van de Nederlandse gemeenten, die tot doel heeft de huidige monolithische informatiesystemen van Nederlandse gemeenten (en een bredere overheid) te veranderen of vervangen door een geavanceerde ‘API-eerst strategie’ software-landschap, waarmee wordt voldaan aan de maatschappelijke vraag naar automatisering, transparantie en privacy.
@@ -43,3 +44,4 @@ Om dit te bereiken is er een autorisatiematrix die in aanbestedingsprocedures ka
 
 De inhoud van de matrix is vergelijkbaar met de records van verwerkingsactiviteiten die zijn opgelegd in het kader van de AVG.
 Zowel NLX-outway als NLX-inway loggen alle overdrachtsgegevens in API-transactielogboeken. Deze logboeken kunnen worden gebruikt voor controledoeleinden en om naleving aan te tonen.
+
