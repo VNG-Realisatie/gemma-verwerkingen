@@ -1,4 +1,5 @@
 # Vragen over standaardisatieproces koppelvlakken
+_Issue: Als developer wil ik een koppelvlakspecificatie verwerkingenregister in Github_
 ## Wat heeft een developer nodig om een standaard te kunnen implementeren?
 * Architectuur: context van de te realiseren api/service
 * Koppelvlak semantisch informatiemodel: betekenis en structuur van gegevens
@@ -12,6 +13,7 @@
 * In vorm waarmee bijdrageproces te doen is (code/markdown/tekst; niet MS word, Enterprise Architect, pdf, enz)
 
 ## Hoe wil je kunnen bijdragen aan een standaard?
+_Issue: Als gemeentelijk medewerker wil ik alle producten kunnen co-creeren_
 * Via pull requests
 * Op welke deelproducten?
   * Functionele beschrijving
@@ -30,6 +32,7 @@
   * Bij bekijken pull request zijn de verschillen te zien, ondersteund door github: tekstbestanden
 
 ## Wat moet koppelvlakbeheerder controleren om bijdrage te beoordelen?
+_Issue: Als developer wil ik een koppelvlakspecificatie verwerkingenregister in Github_
 * Consistentie tussen deelproducten, dus verwerking over hele stack (bijv. wijziging in bericht ook verwerkt in referentie implementatie)
 * Reden/uitleg over wijziging
 * Reacties met overeenstemming uit community: afstemmen pull request met andere leveranciers en gemeenten
