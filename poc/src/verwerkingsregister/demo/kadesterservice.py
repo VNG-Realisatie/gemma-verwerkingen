@@ -38,7 +38,7 @@ class Client(object):
                 'Burgerservicenummer',
             ]),
             # Typically required for the private Kadaster service request, but not actually used here.
-            'X-NLX-Subject-Identifier': 'Burgerservicenummer=342641736'
+            'X-NLX-Request-Subject-Identifier': 'Burgerservicenummer=342641736'
         }
 
         response = requests.get(url, headers=headers)
