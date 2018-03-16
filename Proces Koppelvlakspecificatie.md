@@ -22,7 +22,7 @@
   * Informatiemodellen
     * Informatiemodellen worden nu gemodelleerd in UML in tool Enterprise Architect. Deze ondersteunt git niet. Bovendien zijn er complexe afspraken over de manier van modelleren.
   * Koppelvlakdocumentatie
-  * Berichtspecificatie 
+  * Berichtspecificatie
     * Op dit moment worden berichtspecificaties (OAS of XSD) gegenereerd vanuit UML modellen, waarmee consistentie naar informatiemodel, consistentie naar technische onderlaagafspraken en consistentie tussen specificatie en documentatie wordt gewaarborgd. Tooling voor berichtmodellen ondersteunt git niet.
   * Referentie implementatie
 * Welke voorwaarden zijn er aan de tussenproducten?
@@ -90,7 +90,7 @@ We kennen drie soorten betrokkenen in het proces:
 * Developers willen bondige, maar duidelijke en specifieke beschrijving van de functionaliteit van te realiseren koppelvlakken (api's of services). Developers willen toegang tot deze informatie op de manier die ze gewend zijn bij ontwikkelwerk. Developers willen kunnen bijdragen aan de standaard om deze zo snel mogelijk aan te passen wanneer ze issues tegenkomen. Github is hiervoor de aangewezen plek.
 
 Het gaat dus om het scheiden van de mediums voor ontsluiting van informatie over standaarden, toegespitst op gebruik per doelgroep.
-  
+
 # Standaardisatieproducten voor developers
 Hieronder staan de soorten (deel)producten (documenten, bestanden) die samen een koppelstandaard vormen. Al deze producten zijn opgnomen in een Github repository.
 
@@ -102,6 +102,12 @@ Hieronder staan de soorten (deel)producten (documenten, bestanden) die samen een
 * Algemene functionele beschrijving, voor hele koppelvlakstandaard
 * Context in de architectuur, bijvoorbeeld welke referentiecomponenten betrokken zijn, welk domein, welk proces, welke keten
 * Beschrijving in markdown (tekst met eventueel plaatje)
+* Berichtinteracties
+* Te ondersteunen functionaliteit per referentiecomponent
+* Indien van toepassing: procesflows, user stories en/of use cases
+* Beschrijving wordt gemaakt in markdown (tekst met eventueel plaatje)
+
+N.B. inhoud van het bericht (welke elementen/attributen er in het bericht zitten) is hier nooit relevant, want daarvoor is de API specificatie.
 
 ## Koppelvlak conceptueel/semantisch informatiemodel
 * Een koppelvlak gebruikt meestal (of altijd?) deelverzameling zijn van referentie-informatiemodel(len) en/of domeinmodel
@@ -120,19 +126,37 @@ TODO: bepalen in welke vorm het aangeboden kan worden zodat het toegankelijk is,
 * Beschrijft standaard patronen en afhandeling, zoals functionaliteit voor identificatie en authenticatie, pagineren, foutafhandeling, verwijzen naar gerelateerde objecten, enz.
 * Is koppelvlakoverstijgend en (dus) apart te beheren standaardisatie-object
 * Beschrijving in markdown (tekst met eventueel plaatjes)
+* Als startpunt voor API's nemen we de API strategie en URI strategie zoals die voor Digitaal Stelsel Omgevingswet (DSO) is gemaakt.
+* Gestreeft wordt naar landelijke, overheidsbrede API strategie.
+* De uitwisseltechniek bevat zoveel mogelijk uitwerking in (technische) voorbeelden van wat beschreven/gespecificeerd staat.
 
 ## API specificatie
-* Berichtinteractie
-* Te ondersteunen functionaliteit
-* Indien van toepassing: procesflow, user storie en/of use case
-* Beschrijving in markdown (tekst met eventueel plaatje)
-* Wordt alleen gemaakt wanneer dit nodig is, bijvoorbeeld omdat er plaatjes gebruikt worden of uitgebreide functionele of technische specificatie nodig is. In de berichtdefinitie wodt (in het geval open api specificatie) al de interactie, foutafhandeling, functionele beschrijving en link naar semantisch/conceptuele objectdefinitie opgenomen
-
-N.B. inhoud van het bericht (welke elementen/attributen er in het bericht zitten) is hier nooit relevant, want daarvoor is de berichtdefinitie
-
-## Berichtdefinitie
 * Is de technische en (in zekere mate) functionele definitie van de berichtinteractie en het bericht
 * Voor soap/xml berichten gaat het om wsdl's en xsd's
 * Voor rest/json berichten gaat het om open api specificaties (OAS 3)
 * Voor zover mogelijk ook functionele beschrijving van de api/service en de elementen (incl. voorbeeldwaarde) opgenomen
 * In de API toelichting wordt een link naar uitgebreidere conceptuele definitie van heb object en elementen in het semantisch informatiemodel
+* Vanuit de technische berichtdefinitie (wsdl/xsl of OAS) moet code te genereren zijn voor de belangrijkste programmeertalen.
+
+## Referentieimplementatie
+* Voor elke API wordt een referentieimplementatie gemaakt waarmee ontwikkelaars hun software kunnen testen.
+* Er wordt een referentieimplementatie gemaakt die gebruikt kan worden voor het testen van een consumerapplicatie (door het simuleren van de provider), en er wordt een referentieimplementatie gemaakt die gebruikt kan worden voor het testen van een API provider (door het simuleren van een consumerapplicatie).
+* De code van de referentieimplementatie is open source.
+* In principe wordt de referentieimplementatie in één (programmeer)taal gemaakt.
+
+# Standaardisatieproducten voor overige Belanghebbenden
+Hieronder staan de soorten (deel)producten (documenten, bestanden) die samen een koppelstandaard vormen, zoals deze worden gemaakt ten behoeve van verschillende belanghebbenden (anders dan developers die het koppelvlak implementeren).
+Deze belanghebbenden zijn bijvoorbeeld managers en architecten bij een gemeenten en leveranciers. Deze documentatie is gericht op het invullen van de volgende behoeften van belanghebbenden:
+* Gemeenten willen weten welke standaarden ze kunnen/moeten/mogen vereisen (in een aanbesteding)
+* Gemeenten willen weten welke referentiecomponenten relevant zijn voor bedrijfsprocessen (bijvoorbeeld voor Jeugdzorg een jeugdzorgapplicatie, Digikoppelingadapter en CORV)
+* Leveranciers willen weten aan welke standaarden hun applicaties ze moeten voldoen
+* Leveranciers willen weten voor hun applicatie (een standaard/referentiecomponent) welke koppelingen ze moeten implementeren of kunnen gebruiken
+
+## Koppelvlakbeschrijving
+* Wordt gepubliceerd op gemmaonline.nl (als webpagina en/of als te downloaden pdf).
+* Wordt gemaakt en beheerd door VNG realisatie
+* Bevat een algemene functionele beschrijving voor de koppelvlakstandaard
+* Beschrijft de context in de architectuur, bijvoorbeeld welke referentiecomponenten betrokken zijn, welk domein, welk proces, welke keten
+* Beschrijft welke API's in de koppelvlakstandaard zijn opgenomen.
+* Beschrijft per referentiecomponent welke API's verplicht of optioneel kunnen/moeten worden geïmplementeerd, en in welke rol (consumer of provider).
+* Bevat een link naar de koppelvlakspecificaties (zie [Standaardisatieproducten voor developers](#standaardisatieproducten-voor-developers))
