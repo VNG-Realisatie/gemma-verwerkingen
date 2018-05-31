@@ -1,11 +1,15 @@
 # Vragen over standaardisatieproces koppelvlakken
 ## Wat heeft een developer nodig om een standaard te kunnen implementeren?
+* Concrete real-world use case(s) in tekst en/of afbeelding van de hele keten (vakapplicatie-service-datamodel)
 * Architectuur: context van de te realiseren api/service
-* Koppelvlak semantisch informatiemodel: betekenis en structuur van gegevens
+* Koppelvlak semantisch informatiemodel: betekenis en structuur van gegevens (uitleg over informatiemodel: wat is AN20? wat betekent kardinaliteit voor het datamodel, welke overwegingen bij het implementeren van een datamodel zijn gemaakt)
+* Voorbeeld datamodel, op basis van overwegingen hierboven.
 * Open API Specificatie (voor json) of xsd (voor xml)
 * Referentie implementatie
   * Testen van consumerapplicatie en testen van providerapplicatie (referentie implementatie kan scenario's afspelen voor versturen van berichten
-* Voorbeeldberichten (cookbook met samenstelling en verwerking van berichten)
+* Voorbeeldberichten (cookbook met samenstelling en verwerking van berichten). Liefst gebaseerd op de (punt 1) use case(s)
+* Referentie implementatie van service EN applicatie moeten getest kunnen worden met de voorbeeldberichten
+  * Referentie implementaties moeten makkelijk op developer omgeving worden opgezet (bijv. docker).
 
 ## In welke vorm moeten koppelvlakstandaard-deelproducten worden aangeboden
 * In GITHUB
@@ -25,6 +29,7 @@
   * Berichtspecificatie 
     * Op dit moment worden berichtspecificaties (OAS of XSD) gegenereerd vanuit UML modellen, waarmee consistentie naar informatiemodel, consistentie naar technische onderlaagafspraken en consistentie tussen specificatie en documentatie wordt gewaarborgd. Tooling voor berichtmodellen ondersteunt git niet.
   * Referentie implementatie
+    * Bijdragen moeten automatisch getest worden tegen bestaande referentie implementaties. 
 * Welke voorwaarden zijn er aan de tussenproducten?
   * Bewerkbaar zonder dure, voor developers niet gangbare tooling
   * Bij bekijken pull request zijn de verschillen te zien, ondersteund door github: tekstbestanden
@@ -117,6 +122,11 @@ TODO: bepalen in welke vorm het aangeboden kan worden zodat het toegankelijk is,
 * Aanpassingen aan het model worden gevoed vanuit semantische informatiemodellen en vanuit koppelvlakontwikkeleing en -beheer. Bijvoorbeeld wanneer op een koppelvlak een pull request wordt gedaan op een berichtdefintie, kan de beheerder van het Uitwisselingsgegevensmodel ervoor kiezen dit over te nemen in het UGM.
 
 ## Uitwisseltechniek
+
+> Ik [joeri] zou dit niet zo uitsplitsen maar uitwisseltechniek, api spec en berichtdefinitie is gewoon een OAS. De AOS biedt ook ALLES om de API documentatie te genereren.
+> Deze OAS: https://ztc-staging.maykin.nl/api/v1/schema.json
+> Ziet er (met alleen maar wat opmaak) zo uit: https://ztc-staging.maykin.nl/api/v1/schema/
+
 * Beschrijft standaard patronen en afhandeling, zoals functionaliteit voor identificatie en authenticatie, pagineren, foutafhandeling, verwijzen naar gerelateerde objecten, enz.
 * Is koppelvlakoverstijgend en (dus) apart te beheren standaardisatie-object
 * Beschrijving in markdown (tekst met eventueel plaatjes)
@@ -126,7 +136,7 @@ TODO: bepalen in welke vorm het aangeboden kan worden zodat het toegankelijk is,
 * Te ondersteunen functionaliteit
 * Indien van toepassing: procesflow, user storie en/of use case
 * Beschrijving in markdown (tekst met eventueel plaatje)
-* Wordt alleen gemaakt wanneer dit nodig is, bijvoorbeeld omdat er plaatjes gebruikt worden of uitgebreide functionele of technische specificatie nodig is. In de berichtdefinitie wodt (in het geval open api specificatie) al de interactie, foutafhandeling, functionele beschrijving en link naar semantisch/conceptuele objectdefinitie opgenomen
+* Wordt alleen gemaakt wanneer dit nodig is, bijvoorbeeld omdat er plaatjes gebruikt worden of uitgebreide functionele of technische specificatie nodig is. In de berichtdefinitie wordt (in het geval open api specificatie) al de interactie, foutafhandeling, functionele beschrijving en link naar semantisch/conceptuele objectdefinitie opgenomen
 
 N.B. inhoud van het bericht (welke elementen/attributen er in het bericht zitten) is hier nooit relevant, want daarvoor is de berichtdefinitie
 
