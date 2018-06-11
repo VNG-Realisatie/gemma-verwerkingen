@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <main role="main">
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Verwerkingsregister</h1>
+        <p class="lead text-muted">Dit Proof of Concept bevat 2 onderdelen: Een referentie Verwerkingsregister en een Demo applicatie die op de juiste manier logt.</p>
+        <p>
+          <a href="{% url 'admin:index' %}" class="btn btn-primary">Verwerkingsregister</a>
+          <a href="{% url 'demo:list' %}" class="btn btn-secondary">Demo applicatie</a>
+        </p>
+      </div>
+    </section>
+  </main>
+{% endblock %}
