@@ -1,3 +1,8 @@
+| Eigenaar | Ingevuld door |
+| --- | --- |
+| Common Ground | Onbekend |
+<hr/>
+
 # gemma-verwerkingen
 
 Tijdens het'fieldlab Common Ground' van 5 tot 9 maart 2018 is een proof of concept gedaan van de zogenaamde ''NLX'. Een voorziening die is bedoeld om als gemeenten  veilig en eenvoudig gegevens op te vragen binnen en buiten de gemeente. Om daarbij te kunnen voldoen aan de eisen die vanuit de AVG worden gesteld is in de fieldlab-week een eerste versie van een 'verwerkingenregister' en een 'loggingregister' ontwikkeld.
